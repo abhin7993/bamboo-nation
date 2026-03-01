@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
   );
 
   const snapshot = await getDocs(q);
-  let data: any[] = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  let data: Record<string, unknown>[] = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
   // Filter client-side to avoid Firestore composite index requirement
   if (source && source !== "all") {
